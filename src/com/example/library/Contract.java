@@ -10,10 +10,16 @@ public class Contract {
 
 	public static final String KEY_MUNICIPIO_NOMBRE = "municipio_nombre";
 
+	public static final String SELECTION_BY_NOMBRE_MUNICIPIO = Contract.KEY_MUNICIPIO_NOMBRE + " = ";
+
+	public static final String SELECTION_BY_ID_MUNICIPIO = Contract.KEY_MUNICIPIO_ID + " = ";
+
+	public static final String MUNICIPIOS_ID_ORDER = Contract.KEY_MUNICIPIO_ID + " DESC";
+
 	// Configuración base de datos
 	public static final String DATABASE_NAME = "playeando_DB";
 
-	public static final int DATABASE_VERSION = 1;
+	public static final int DATABASE_VERSION = 2;
 
 	// Content provider
 	public static final String AUTHORITY = "com.example.opendata.MyContentProvider";
@@ -36,5 +42,8 @@ public class Contract {
 			"La Victoria de Acentejo", "Los Realejos", "Los Silos", "Puerto de la Cruz", "San Cristóbal de La Laguna",
 			"San Juan de la Rambla", "San Miguel de Abona", "Santa Cruz de Tenerife", "Santa Úrsula",
 			"Santiago del Teide", "Tacoronte", "Tegueste", "Vilaflor" };
+
+	// ListView municipios
+	public static final String LISTVIEW_POSITION = "listview_position";
 
 }

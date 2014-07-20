@@ -66,12 +66,11 @@ public class MyContentProvider extends ContentProvider {
 			db.close();
 			if (rowID > 0) {
 				_uri = ContentUris.withAppendedId(uri, rowID);
-				getContext().getContentResolver().notifyChange(_uri, null);
-
 			}
 			else {
 				throw new SQLException("No se pudo insertar dato " + uri);
 			}
+
 			break;
 		default:
 			throw new IllegalArgumentException("URI desconocida: " + uri);

@@ -9,9 +9,12 @@ import android.app.ActionBar.TabListener;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
+import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 	private ViewPager viewPager;
@@ -41,14 +44,34 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		ContentValues values = new ContentValues();
 		for (String municipio : Contract.MUNICIPIOS_ARRAY) {
 			values.put(Contract.KEY_MUNICIPIO_NOMBRE, municipio);
+			if (getContentResolver().query(Contract.MUNICIPIOS_URI, null,
+					Contract.SELECTION_BY_NOMBRE_MUNICIPIO + '"' + municipio + '"', null, null).getCount() < 1)
+				getContentResolver().insert(Contract.MUNICIPIOS_URI, values);
 		}
-		getContentResolver().update(Contract.MUNICIPIOS_URI, values, null, null);
-		
+
 		// Añadir pestañas
 		for (String tab_name : tabs) {
 			actionBar.addTab(actionBar.newTab().setText(tab_name).setTabListener(this));
 		}
 
+		/**
+		 * cambiar la selección de pestaña cuando se cambia de pestaña desplazando el dedo
+		 * */
+		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+			@Override
+			public void onPageSelected(int position) {
+				actionBar.setSelectedNavigationItem(position);
+			}
+
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+			}
+		});
 	}
 
 	@Override
@@ -59,19 +82,19 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	}
 
 	@Override
-	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void onTabSelected(Tab arg0, FragmentTransaction arg1) {
-		// TODO Auto-generated method stub
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		viewPager.setCurrentItem(tab.getPosition());
 
 	}
 
 	@Override
-	public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
 
 	}

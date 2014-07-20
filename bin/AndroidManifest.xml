@@ -32,6 +32,11 @@
             android:exported="true"
             android:readPermission="android.permission.permRead" >
         </provider>
+
+        <activity
+            android:name="com.example.opendata.PlayaActivity"
+            android:label="@string/title_activity_playa" >
+        </activity>
     </application>
 
 </manifest>
