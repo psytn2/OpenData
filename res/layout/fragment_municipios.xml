@@ -5,24 +5,12 @@
     android:background="#fa6a6a"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="25dp"
-        android:gravity="center"
-        android:text="Municipios"
-        android:textSize="20dp" />
-
     <ListView
         android:id="@id/android:list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp" >
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
     </ListView>
 
 </RelativeLayout>

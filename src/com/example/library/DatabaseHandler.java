@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHandler extends SQLiteOpenHelper {
 	private static final String CREATE_MUNICIPIOS_TABLE = "CREATE TABLE " + Contract.TABLE_MUNICIPIOS + "("
 			+ Contract.KEY_MUNICIPIO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + Contract.KEY_MUNICIPIO_NOMBRE
-			+ " TEXT NOT NULL" + ")";
+			+ " TEXT NOT NULL," + Contract.KEY_AEMET_ID + " TEXT NOT NULL" + ")";
 
 	public DatabaseHandler(Context context) {
 		super(context, Contract.DATABASE_NAME, null, Contract.DATABASE_VERSION);

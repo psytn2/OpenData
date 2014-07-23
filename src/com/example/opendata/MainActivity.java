@@ -42,11 +42,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 		// Actualizar municipios base de datos
 		ContentValues values = new ContentValues();
+		int aemetIndex = 0;
 		for (String municipio : Contract.MUNICIPIOS_ARRAY) {
 			values.put(Contract.KEY_MUNICIPIO_NOMBRE, municipio);
+			values.put(Contract.KEY_AEMET_ID, Contract.AEMET_ARRAY[aemetIndex]);
+			aemetIndex++;
 			if (getContentResolver().query(Contract.MUNICIPIOS_URI, null,
-					Contract.SELECTION_BY_NOMBRE_MUNICIPIO + '"' + municipio + '"', null, null).getCount() < 1)
+					Contract.SELECTION_BY_NOMBRE_MUNICIPIO + '"' + municipio + '"', null, null).getCount() < 1) {
 				getContentResolver().insert(Contract.MUNICIPIOS_URI, values);
+			}
 		}
 
 		// Añadir pestañas
